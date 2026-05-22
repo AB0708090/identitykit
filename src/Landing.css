@@ -1,0 +1,57 @@
+/* NAV */
+.nav{display:flex;align-items:center;justify-content:space-between;padding:1rem 2rem;background:#fff;border-bottom:1px solid #e8f5f1;position:sticky;top:0;z-index:100;}
+.nav-logo{font-size:18px;font-weight:700;color:#0F6E56;}
+.nav-btn{padding:8px 20px;background:#0F6E56;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;}
+.nav-btn:hover{background:#085041;}
+
+/* HERO */
+.hero{text-align:center;padding:4rem 1.5rem 3rem;background:linear-gradient(135deg,#f0faf6 0%,#e8f5f1 100%);}
+.hero-badge{display:inline-block;padding:6px 16px;background:#E1F5EE;color:#0F6E56;border-radius:99px;font-size:13px;font-weight:500;margin-bottom:1.25rem;border:1px solid #9FE1CB;}
+.hero-title{font-size:42px;font-weight:700;color:#1a1a1a;line-height:1.2;margin-bottom:1rem;}
+.hero-green{color:#0F6E56;}
+.hero-sub{font-size:17px;color:#555;max-width:520px;margin:0 auto 2rem;line-height:1.7;}
+.hero-btn{padding:14px 32px;background:#0F6E56;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;margin-bottom:1rem;}
+.hero-btn:hover{background:#085041;}
+.hero-note{font-size:13px;color:#888;}
+
+/* DOCS */
+.docs-section{padding:3rem 1.5rem;background:#fff;}
+.sec-h{text-align:center;font-size:26px;font-weight:700;color:#1a1a1a;margin-bottom:2rem;}
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;max-width:860px;margin:0 auto;}
+.doc-card{padding:1.5rem;border:1.5px solid #e8f5f1;border-radius:12px;position:relative;}
+.doc-card.featured{border-color:#0F6E56;background:#f0faf6;}
+.doc-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#0F6E56;color:#fff;font-size:11px;font-weight:600;padding:3px 12px;border-radius:99px;white-space:nowrap;}
+.doc-icon{font-size:28px;margin-bottom:10px;}
+.doc-name{font-size:16px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
+.doc-desc{font-size:13px;color:#666;line-height:1.6;}
+
+/* HOW */
+.how-section{padding:3rem 1.5rem;background:#f8faf9;}
+.steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;max-width:900px;margin:0 auto;}
+.step-card{background:#fff;padding:1.25rem;border-radius:12px;border:1px solid #e8f5f1;text-align:center;}
+.step-num{font-size:28px;font-weight:700;color:#0F6E56;margin-bottom:8px;}
+.step-title{font-size:14px;font-weight:600;color:#1a1a1a;margin-bottom:6px;}
+.step-desc{font-size:12px;color:#666;line-height:1.6;}
+
+/* PRICING */
+.pricing-section{padding:3rem 1.5rem;background:#fff;display:flex;justify-content:center;}
+.pricing-card{background:#f0faf6;border:2px solid #0F6E56;border-radius:16px;padding:2rem;max-width:400px;width:100%;text-align:center;}
+.pricing-top{margin-bottom:1.5rem;}
+.pricing-title{font-size:18px;font-weight:700;color:#1a1a1a;margin-bottom:8px;}
+.pricing-price{font-size:48px;font-weight:700;color:#0F6E56;margin-bottom:6px;}
+.pricing-sub{font-size:13px;color:#888;}
+.pricing-items{text-align:left;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:10px;}
+.pricing-item{font-size:14px;color:#333;display:flex;align-items:center;gap:8px;}
+.pricing-btn{width:100%;padding:14px;background:#0F6E56;color:#fff;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;}
+.pricing-btn:hover{background:#085041;}
+
+/* FOOTER */
+.footer{padding:2rem;text-align:center;background:#0F6E56;}
+.footer-logo{font-size:18px;font-weight:700;color:#fff;margin-bottom:8px;}
+.footer-note{font-size:13px;color:rgba(255,255,255,0.7);}
+
+@media(max-width:700px){
+  .hero-title{font-size:28px;}
+  .docs-grid{grid-template-columns:1fr;}
+  .steps-grid{grid-template-columns:1fr 1fr;}
+}
