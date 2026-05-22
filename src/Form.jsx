@@ -11,6 +11,8 @@ export default function Form({ onSubmit }) {
   const [step, setStep] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [photoPreview, setPhotoPreview] = useState(null);
+  const [photoFile, setPhotoFile] = useState(null);
   const [form, setForm] = useState({
     full_name:'', city:'', email:'', whatsapp:'', niche:'', languages:'',
     platforms:[], instagram_followers:'', youtube_subscribers:'', avg_views:'', engagement_rate:'',
@@ -21,6 +23,15 @@ export default function Form({ onSubmit }) {
 
   const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
   const toggleArr = (k, v) => setForm(f => ({ ...f, [k]: f[k].includes(v) ? f[k].filter(x => x !== v) : [...f[k], v] }));
+
+  const handlePhoto = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setPhotoFile(file);
+    const reader = new FileReader();
+    reader.onload = (ev) => setPhotoPreview(ev.target.result);
+    reader.readAsDataURL(file);
+  };
 
   const steps = [
     { title: 'Who are you?', emoji: '👋', subtitle: 'Basic info — goes on all 3 documents' },
@@ -44,6 +55,21 @@ export default function Form({ onSubmit }) {
     if (!validate()) return;
     setLoading(true);
     try {
+      let photo_url = '';
+      if (photoFile) {
+        const ext = photoFile.name.split('.').pop();
+        const fileName = `${Date.now()}.${ext}`;
+        const { error: upErr } = await supabase.storage
+          .from('creator-photos')
+          .upload(fileName, photoFile, { upsert: true });
+        if (!upErr) {
+          const { data: urlData } = supabase.storage
+            .from('creator-photos')
+            .getPublicUrl(fileName);
+          photo_url = urlData?.publicUrl || '';
+        }
+      }
+
       const { error: err } = await supabase.from('creator_submissions').insert([{
         full_name: form.full_name,
         city: form.city,
@@ -67,6 +93,7 @@ export default function Form({ onSubmit }) {
         rate_story: form.rate_story,
         vibe: form.vibe,
         extra: form.extra,
+        photo_url: photo_url,
         status: 'new'
       }]);
       if (err) throw err;
@@ -100,6 +127,24 @@ export default function Form({ onSubmit }) {
 
           {step === 0 && (
             <div className="fields">
+
+              <div className="photo-upload-area">
+                <div className="photo-circle" onClick={() => document.getElementById('photoInput').click()}>
+                  {photoPreview
+                    ? <img src={photoPreview} alt="Preview" className="photo-preview" />
+                    : <div className="photo-placeholder">📷<br /><span>Upload Photo</span></div>
+                  }
+                </div>
+                <div className="photo-info">
+                  <div className="photo-title">Profile Photo</div>
+                  <div className="photo-hint">Used in your Media Kit & CV<br />JPG or PNG · Clear face photo</div>
+                  <button className="photo-btn" type="button" onClick={() => document.getElementById('photoInput').click()}>
+                    {photoPreview ? '✅ Change photo' : '📷 Choose photo'}
+                  </button>
+                </div>
+                <input type="file" id="photoInput" accept="image/*" onChange={handlePhoto} style={{ display: 'none' }} />
+              </div>
+
               <div className="field"><label>Full name <span className="req">*</span></label><input value={form.full_name} onChange={e => set('full_name', e.target.value)} placeholder="e.g. Priya Sharma" /></div>
               <div className="row2">
                 <div className="field"><label>City <span className="req">*</span></label><input value={form.city} onChange={e => set('city', e.target.value)} placeholder="e.g. Mumbai" /></div>
