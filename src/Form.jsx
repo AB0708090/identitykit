@@ -15,7 +15,7 @@ export default function Form({ onSubmit }) {
   const [photoFile, setPhotoFile] = useState(null);
   const [form, setForm] = useState({
     full_name:'', city:'', email:'', whatsapp:'', niche:'', languages:'',
-    platforms:[], instagram_followers:'', youtube_subscribers:'', avg_views:'', engagement_rate:'',
+    platforms:[], instagram_handle:'', youtube_channel:'', instagram_followers:'', youtube_subscribers:'', avg_views:'', engagement_rate:'',
     audience_gender:'', audience_age:'', top_cities:'',
     brands_worked:'', best_campaign:'',
     content_types:[], rate_reel:'', rate_youtube:'', rate_story:'', vibe:'', extra:''
@@ -78,6 +78,8 @@ export default function Form({ onSubmit }) {
         niche: form.niche,
         languages: form.languages,
         platforms: form.platforms.join(', '),
+        instagram_handle: form.instagram_handle,
+        youtube_channel: form.youtube_channel,
         instagram_followers: form.instagram_followers,
         youtube_subscribers: form.youtube_subscribers,
         avg_views: form.avg_views,
@@ -169,6 +171,10 @@ export default function Form({ onSubmit }) {
                     <div key={p} className={`chip ${form.platforms.includes(p) ? 'on' : ''}`} onClick={() => toggleArr('platforms', p)}>{p}</div>
                   ))}
                 </div>
+              </div>
+              <div className="row2">
+                <div className="field"><label>Instagram handle</label><input value={form.instagram_handle} onChange={e => set('instagram_handle', e.target.value)} placeholder="e.g. @priyasharma" /></div>
+                <div className="field"><label>YouTube channel name</label><input value={form.youtube_channel} onChange={e => set('youtube_channel', e.target.value)} placeholder="e.g. Priya Sharma" /></div>
               </div>
               <div className="row2">
                 <div className="field"><label>Instagram followers</label><input value={form.instagram_followers} onChange={e => set('instagram_followers', e.target.value)} placeholder="e.g. 50,000" /></div>
