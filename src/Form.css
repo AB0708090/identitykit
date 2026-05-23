@@ -41,3 +41,4 @@
 .btn-submit:hover{background:#085041;}
 .btn-submit:disabled{opacity:0.6;cursor:not-allowed;}
 @media(max-width:500px){.row2{grid-template-columns:1fr;}}
+.rate-section-title{font-size:13px;font-weight:700;color:#0F6E56;padding:8px 0 2px;border-bottom:1.5px solid #E1F5EE;margin-bottom:4px;}
